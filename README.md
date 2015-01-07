@@ -32,3 +32,16 @@ if `Article` had 2 transitions, `delete` and `publish`, the following API calls 
 
 - `POST /api/article/1234/delete/`
 - `POST /api/article/1234/publish/`
+
+### Saving
+
+By default, the model instance will be saved after the transition has been successfully called. This can be disabled with the `save_after_transition` attribute
+
+```python
+class ArticleViewSet(
+    get_viewset_transition_action_mixin(Article),
+    viewsets.ModelViewSet
+):
+    queryset = Article.objects.all()
+    save_after_transition = False
+```
