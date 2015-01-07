@@ -13,7 +13,7 @@ def get_transition_viewset_method(transition_name):
 
         transition_method(by=self.request.user)
 
-        if self.save_post_transition:
+        if self.save_after_transition:
             object.save()
 
         serializer = self.get_serializer(object)
@@ -31,7 +31,7 @@ def get_viewset_transition_action_mixin(model):
     instance = model()
 
     class Mixin(object):
-        save_post_transition = True
+        save_after_transition = True
 
     transitions = instance.get_all_status_transitions()
     transition_names = set(x.name for x in transitions)
