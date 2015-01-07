@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='drf-fsm-transitions',
-    version='0.1.0',
+    version='0.2.0',
     description='Automatically hook your Django-FSM transitions up to Django REST Framework',
     author='Jacob Haslehurst',
     author_email='jacob@haslehurst.net',
