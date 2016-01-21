@@ -16,7 +16,7 @@ When declaring your viewset, simply mix in the result of `get_viewset_transition
 
 ```python
 from rest_framework import viewsets
-from drf_transition_methods.viewset_mixins import get_viewset_transition_action_mixin
+from drf_fsm_transitions.viewset_mixins import get_viewset_transition_action_mixin
 
 from .models import Article
 
