@@ -2,11 +2,11 @@ from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 
 
-def get_transition_viewset_method(transition_name):
+def get_transition_viewset_method(transition_name, **kwargs):
     '''
     Create a viewset method for the provided `transition_name`
     '''
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], **kwargs)
     def inner_func(self, request, pk=None):
         object = self.get_object()
         transition_method = getattr(object, transition_name)
@@ -22,7 +22,7 @@ def get_transition_viewset_method(transition_name):
     return inner_func
 
 
-def get_viewset_transition_action_mixin(model):
+def get_viewset_transition_action_mixin(model, **kwargs):
     '''
     Find all transitions defined on `model`, then create a corresponding
     viewset action method for each and apply it to `Mixin`. Finally, return
@@ -39,7 +39,7 @@ def get_viewset_transition_action_mixin(model):
         setattr(
             Mixin,
             transition_name,
-            get_transition_viewset_method(transition_name)
+            get_transition_viewset_method(transition_name, **kwargs)
         )
 
     return Mixin
